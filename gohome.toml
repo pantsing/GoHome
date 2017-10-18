@@ -1,0 +1,26 @@
+# This is a TOML document.
+[server]
+listen="0.0.0.0:18300"
+certFile="/usr/local/gohome/cert.pem"
+keyFile="/usr/local/gohome/key.pem"
+
+[client]
+checkInterval=1
+serverAPI="https://GoHomeServer:18300/ip"
+insecureSkipVerify=true
+
+[client.DDNSConf.DNSPOD]
+loginToken="******"
+format="json"
+
+[client.Domains."your.domain"]
+ddns="DNSPOD"
+#host       主机记录   必选     (如:www,默认为@)
+#recordType 记录类型   必选     (通过API记录类型获得，大写英文，如:A)
+[[client.Domains."your.domain".records]]
+    host="www"
+    recordType="A"
+
+[[client.Domains."your.domain".records]]
+    host="@"
+    recordType="MX"

@@ -1,0 +1,12 @@
+[Unit]
+Description=GoHome Server Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/gohome/gohome server -c=/usr/local/gohome/gohome.toml
+Restart=always
+KillMode=process
+RestartSec=2s
+
+[Install]
+WantedBy=multi-user.target
