@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-
-set -e
-
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ "$GOPATH" == "" ]; then
     export GOPATH=$DIR
@@ -11,6 +8,10 @@ fi
 
 GOFLAGS='-ldflags="-s -w"'
 arch=$(go env GOARCH)
+if [ "$2" == "arm" ]; then
+    export GOARM="5"
+    arch='arm'
+fi
 version=$(date +'%Y%m%d-%H%M%S')
 goversion=$(go version | awk '{print $3}')
 os='linux'
@@ -18,7 +19,7 @@ if [ "$1" == "darwin" ]; then
     os='darwin'
 fi
 
-GOOS=$os GOARCH=$arch GOFLAGS="$GOFLAGS" go build
+GOOS=$os GOARCH=$arch GOFLAGS="$GOFLAGS" GOARM="${GOARM}" go build
 
 if [ "$os" != "linux" ]; then
     exit
