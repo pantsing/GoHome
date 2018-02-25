@@ -3,7 +3,9 @@ GoHome
 
 GoHome helps connect your home computers/servers to internet via DNSPOD Dynamic DNS.
 
-###Installation
+Installation
+------
+<pre><code>
 git clone https://github.com/pantsing/GoHome.git
 
 cd gohome
@@ -27,3 +29,4 @@ cp /usr/local/gohome/*.service /usr/lib/systemd/system/
 systemctl enable ghclient.service
 
 systemctl start ghclient.service
+</code></pre>
